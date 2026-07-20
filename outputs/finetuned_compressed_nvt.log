@@ -1,0 +1,15 @@
+LAMMPS (4 Jul 2026)
+Model: finetuned_compressed_sampled5.pt2
+System: 192 atoms, 64 H2O, 12.42 Angstrom periodic box
+
+Step 0       Temp 300.0 K      PotEng -30041.33 eV     Press -417636.65
+
+cudaDeviceSynchronize() error( cudaErrorIllegalAddress): an illegal memory access was encountered
+
+Backtrace:
+Kokkos::Impl::ExecSpaceManager::static_fence
+LAMMPS_NS::NBinKokkos<Kokkos::Cuda>::bin_atoms
+LAMMPS_NS::NeighborKokkos::build_kokkos
+LAMMPS_NS::VerletKokkos::run
+
+Exit code: 6. No integration step completed.
