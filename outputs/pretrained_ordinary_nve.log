@@ -1,0 +1,17 @@
+LAMMPS (4 Jul 2026)
+Model: pretrained_ordinary.pt2
+System: 192 atoms, 64 H2O, 12.42 Angstrom periodic box
+
+Step 0       Temp 300.0
+Step 1000    Temp 4320.6462 K    Total energy -956.17823 eV
+Step 1100    Temp 1018411.9 K   Total energy 24590.473 eV
+
+cudaDeviceSynchronize() error( cudaErrorIllegalAddress): an illegal memory access was encountered
+
+Backtrace:
+Kokkos::Impl::ExecSpaceManager::static_fence
+LAMMPS_NS::NBinKokkos<Kokkos::Cuda>::bin_atoms
+LAMMPS_NS::NeighborKokkos::build_kokkos
+LAMMPS_NS::VerletKokkos::run
+
+The short 100-step smoke test completed; the longer NVE run aborted after trajectory blow-up.
