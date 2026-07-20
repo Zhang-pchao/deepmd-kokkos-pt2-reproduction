@@ -1,0 +1,26 @@
+# Portable NVT input. Supply datafile, model, and output_prefix with -var.
+units           metal
+boundary        p p p
+atom_style      atomic
+atom_modify     map yes
+
+read_data       ${datafile}
+pair_style      deepmd ${model}
+pair_coeff      * * H O
+
+neighbor        1.0 bin
+neigh_modify    every 1 delay 0 check yes
+
+velocity        all create 300.0 20260720 mom yes rot yes dist gaussian
+fix             nvt all nvt temp 300.0 300.0 0.1
+timestep        0.0005
+thermo          1000
+thermo_style    custom step time temp pe ke etotal press vol
+thermo_modify   flush yes
+
+dump            traj_lmp all custom 100 ${output_prefix}.lammpstrj id type xu yu zu vx vy vz
+dump_modify     traj_lmp sort id
+dump            traj_xyz all xyz 100 ${output_prefix}.xyz
+dump_modify     traj_xyz element H O sort id
+
+run             20000
